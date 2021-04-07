@@ -1,10 +1,35 @@
 {
+  "name": "hydration",
+  "description": "https://www.jameshill.dev/articles/partial-hydration/",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && concurrently --kill-others \"npm run serve\" \"npm run sass-watch\"",
+    "copy": "cp src/index.html public",
+    "build": "npm run copy && npm run sass && browserify -p esmify src/index.js --debug > public/bundle.js",
+    "serve": "budo src/index.js:bundle.js --pushstate --dir=public --live --open -- -p esmify --debug",
+    "sass": "sass ./src/style/style.scss ./public/style.css",
+    "sass-watch": "sass --watch src/style:public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "htm": "^3.0.4",
-    "preact": "^10.5.13"
+    "preact": "^10.5.13",
+    "preact-render-to-string": "^5.1.19"
   },
   "devDependencies": {
     "browserify": "^17.0.0",
-    "budo": "^11.6.4"
-  }
+    "budo": "^11.6.4",
+    "sass": "^1.32.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/hydration.git"
+  },
+  "author": "Nick Thomas <nichoth@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nichoth/hydration/issues"
+  },
+  "homepage": "https://github.com/nichoth/hydration#readme"
 }

@@ -1,0 +1,18 @@
+body {
+    background-color: pink;
+}
+
+li {
+    a {
+        transition: text-decoration 1s;
+        text-decoration: transparent underline;
+        text-decoration-thickness: 3px;
+    }
+
+    &.active {
+        a {
+            text-decoration: blue underline;
+            text-decoration-thickness: 3px;
+        }
+    }
+}
